@@ -1,0 +1,3 @@
+import autocode
+
+autocode.webapp()

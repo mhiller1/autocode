@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autocode"
+version = "0.0.1"
+description = "AI code generator"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["gradio>=3.15.0", 
+                "torch>=2.0.0", 
+                "transformers>=4.27.2"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/mhiller1/autocode"
