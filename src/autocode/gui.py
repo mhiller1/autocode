@@ -3,7 +3,7 @@ import gradio as gr
 
 import autocode.generator as gen
 
-def webapp():
+def webapp(share, auth):
     def exit_app():
         os._exit(0)
     
@@ -62,8 +62,8 @@ def webapp():
             submit_button.click(model_generate, inputs=[loaded_model, input_text, input_max_length, input_return_sequences, input_beams, input_temperature], outputs=[output_text])
             
     gui.queue(concurrency_count=1)
-    gui.launch()
+    gui.launch(share=share, auth=auth)
 
 if __name__ == '__main__':
-    webapp()
+    webapp(False, None)
  
