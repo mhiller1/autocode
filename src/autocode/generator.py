@@ -1,4 +1,5 @@
 import torch
+from accelerate import init_empty_weights
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
@@ -7,11 +8,12 @@ class Generator:
     def __init__(self, model_path, fp16, gpu) -> None:
         self.gpu = gpu
         self.tokenizer = AutoTokenizer.from_pretrained(model_path)
-        self.model = AutoModelForCausalLM.from_pretrained(model_path)
-        if fp16:
-            self.model = self.model.half()
-        if gpu:
-            self.model = self.model.to(device)
+        with init_empty_weights():
+            self.model = AutoModelForCausalLM.from_pretrained(model_path, device_map="auto")
+            if fp16:
+                self.model = self.model.half()
+            if gpu:
+                self.model = self.model.to(device)
     
     def generate(self, input, max_length, return_sequences, beams, temperature) -> str:
         encoded_input = self.tokenizer(input, return_tensors="pt")

@@ -7,8 +7,9 @@ name = "autocode"
 version = "0.0.1"
 description = "AI code generator"
 readme = "README.md"
-requires-python = ">=3.10"
-dependencies = ["gradio>=3.15.0", 
+requires-python = ">=3.9"
+dependencies = ["accelerate>=0.17.1",
+                "gradio>=3.15.0", 
                 "torch>=2.0.0", 
                 "transformers>=4.27.2"]
 classifiers = [
